@@ -98,18 +98,18 @@ install:
   ############################################################################
   - cd ${DEPS}
   - git clone https://github.com/dealii/dealii.git
-  - cd dealii && mkdir build && cd build && cmake .. && make -j2 install
+  - cd dealii && mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DDEAL_II_COMPONENT_EXAMPLES=OFF && make -j2 install
 
   ############################################################################
   # Install Spacy
   ############################################################################
   - cd ${DEPS}
   - git clone https://github.com/spacy-dev/Spacy.git
-  - cd Spacy && mkdir build && cd build && cmake .. -DdealII=ON && make -j2 && sudo make install
+  - cd Spacy && mkdir build && cd build && cmake .. -DdealII=ON -DCMAKE_BUILD_TYPE=Release && make -j2 && sudo make install
 
 script:
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build && cd build
-  - cmake .. -DdealII=ON
+  - cmake .. -DdealII=ON -DCMAKE_BUILD_TYPE=Release
   - make -j2 && ctest
 
