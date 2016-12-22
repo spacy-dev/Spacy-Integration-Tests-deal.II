@@ -165,7 +165,7 @@ TEST_F(dealII_VectorAdapter,Comparison)
     EXPECT_TRUE( w0 == w1 );
 
     const auto eps = 1e-5;
-    V.setEps(eps);
+    V.set_eps(eps);
 
     get(w0)(1) = 1 - 0.5*eps;
     EXPECT_TRUE( w0 == w1 );
