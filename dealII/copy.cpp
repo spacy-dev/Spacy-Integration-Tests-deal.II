@@ -57,7 +57,8 @@ namespace
         {
             dealii::GridGenerator::hyper_cube(triangulation, -1, 1);
             n_components = triangulation.n_vertices();
-            V = dealII::makeHilbertSpace<components>(triangulation, n_variables, fe_order);
+            auto order_and_first_component = { std::make_pair(1,0), std::make_pair(1,1), std::make_pair(1,2) };
+            V = dealII::makeHilbertSpace<components,components,components>(triangulation, order_and_first_component);
         }
 
         auto dealII_test_vector()
@@ -108,7 +109,8 @@ namespace
         {
             dealii::GridGenerator::hyper_cube(triangulation, -1, 1);
             n_components = triangulation.n_vertices();
-            V = dealII::makeHilbertSpace<components>(triangulation, {2, 0, 1}, fe_order);
+            auto order_and_first_component = { std::make_pair(1,0), std::make_pair(1,1), std::make_pair(1,2) };
+            V = dealII::makeHilbertSpace<components>(triangulation, order_and_first_component, {2, 0, 1});
         }
 
         auto dealII_test_vector()
@@ -162,7 +164,8 @@ namespace
         {
             dealii::GridGenerator::hyper_cube(triangulation, -1, 1);
             n_components = triangulation.n_vertices();
-            V = dealII::makeHilbertSpace<components>(triangulation, {0,1}, {2}, fe_order);
+            auto order_and_first_component = { std::make_pair(1,0), std::make_pair(1,1), std::make_pair(1,2) };
+            V = dealII::makeHilbertSpace<components>(triangulation, order_and_first_component, {0,1}, {2});
         }
 
         auto dealII_test_vector()
