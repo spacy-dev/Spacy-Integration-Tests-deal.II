@@ -13,6 +13,7 @@
 namespace
 {
     const int fe_order = 1;
+    const constexpr int components = 1;
 
     class dealII_VectorAdapter : public ::testing::Test
     {
@@ -21,7 +22,7 @@ namespace
         {
             dealii::GridGenerator::hyper_cube(triangulation, -1, 1);
             n_components = triangulation.n_vertices();
-            V = Spacy::dealII::makeHilbertSpace(triangulation, fe_order);
+            V = Spacy::dealII::makeHilbertSpace<components>(triangulation, fe_order);
             zeros = dealii::Vector<double>(n_components);
         }
 
