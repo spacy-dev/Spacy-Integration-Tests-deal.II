@@ -8,10 +8,6 @@ addons:
     - ubuntu-toolchain-r-test
 
     packages:
-    - g++-5
-    - gcc-5
-    - g++-6
-    - gcc-6
     - ninja-build
 
 
@@ -34,11 +30,21 @@ matrix:
     - os: linux
       env: COMPILER=g++-5 CCOMPILER=gcc-5 COMPUTE_COVERAGE=false
       compiler: gcc
+      addons:
+        apt:
+          packages:
+            - g++-5
+            - gcc-5
 
     # GCC 6
     - os: linux
       env: COMPILER=g++-6 CCOMPILER=gcc-6 GCOV=gcov-6 COMPUTE_COVERAGE=true MAKE_DOC=true
       compiler: gcc
+      addons:
+        apt:
+          packages:
+            - g++-6
+            - gcc-6
 
 install:
   ############################################################################
