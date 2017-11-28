@@ -12,6 +12,7 @@ addons:
     - gcc-5
     - g++-6
     - gcc-6
+    - build-ninja
 
 
 cache: ccache
@@ -82,8 +83,8 @@ install:
   ############################################################################
   - cd ${DEPS}
   - git clone https://github.com/dealii/dealii.git
-  - cd dealii && mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DDEAL_II_COMPONENT_EXAMPLES=OFF
-  - sudo make -j4 install
+  - cd dealii && mkdir build && cd build && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DDEAL_II_COMPONENT_EXAMPLES=OFF
+  - sudo ninja install
 
   ############################################################################
   # Install Spacy
