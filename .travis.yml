@@ -84,6 +84,7 @@ install:
   - cd ${DEPS}
   - git clone https://github.com/dealii/dealii.git
   - cd dealii && mkdir build && cd build && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DDEAL_II_COMPONENT_EXAMPLES=OFF
+  - cmake --build .
   - sudo ninja install
 
   ############################################################################
