@@ -38,7 +38,7 @@ matrix:
       compiler: gcc
 
 install:
-  - export PATH=$PATH:/usr/lib/ccache
+  - export PATH=/usr/lib/ccache:$PATH
   ############################################################################
   # All the dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
   ############################################################################
