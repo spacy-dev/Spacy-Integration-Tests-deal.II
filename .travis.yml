@@ -83,7 +83,7 @@ install:
   - cd ${DEPS}
   - git clone https://github.com/dealii/dealii.git
   - cd dealii && mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DDEAL_II_COMPONENT_EXAMPLES=OFF
-  - sudo make -j2 install
+  - sudo make -j4 install
 
   ############################################################################
   # Install Spacy
