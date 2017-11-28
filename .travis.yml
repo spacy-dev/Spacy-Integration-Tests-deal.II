@@ -84,7 +84,8 @@ install:
   # Install dealII
   ############################################################################
   - cd ${DEPS}
-  - if [ -d "dealii" ]; then
+  - |
+    if [ -d "dealii" ]; then
       cd dealii && git pull
     else
       git clone https://github.com/dealii/dealii.git && cd dealii
