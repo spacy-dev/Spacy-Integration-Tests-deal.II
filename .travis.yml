@@ -94,7 +94,7 @@ install:
     else
       git clone https://github.com/lubkoll/FunG.git && cd FunG
     fi
-  - sudo cp -r FunG/fung /usr/local/include
+  - sudo cp -r fung /usr/local/include
 
   ############################################################################
   # Install dealII
