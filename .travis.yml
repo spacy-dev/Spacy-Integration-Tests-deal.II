@@ -12,7 +12,7 @@ addons:
     - gcc-5
     - g++-6
     - gcc-6
-    - build-ninja
+    - ninja-build
 
 
 cache: ccache
