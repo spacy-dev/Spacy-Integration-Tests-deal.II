@@ -7,7 +7,7 @@ services:
 
 install:
   - DEALII_TEST_DIR="/home/dealii/test"
-  - docker pull dealii/deali:latest
+  - docker pull dealii/dealii:latest
 
 script:
   - docker run --rm -ti -v ${TRAVIS_BUILD_DIR}:${DEALII_TEST_DIR} dealii/dealii deps/run_test_in_docker.sh
