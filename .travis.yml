@@ -6,7 +6,7 @@ services:
   - docker
 
 install:
-  - DEALII_TEST_DIR="/home/dealii/test"
+  - DEALII_TEST_DIR="/home/dealii/travis"
   - docker pull dealii/dealii:latest
 
 script:

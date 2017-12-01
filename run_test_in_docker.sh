@@ -4,6 +4,7 @@ DEPS=$HOME/deps
 INCLUDE_DIR=$HOME/include
 LIB_DIR=$HOME/lib
 TEST_DIR=$HOME/test
+TRAVIS_DIR=$HOME/travis
 
 mkdir $DEPS
 mkdir $INCLUDE_DIR
@@ -37,7 +38,7 @@ mkdir $TEST_DIR
 cd $TEST_DIR
 mkdir build
 cd build
-cmake $TEST_DIR -DdealII=ON -DCMAKE_BUILD_TYPE=Release
+cmake $TRAVIS_DIR -DdealII=ON -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 
 ctest
