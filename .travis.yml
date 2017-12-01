@@ -2,131 +2,13 @@ sudo: required
 
 language: c++
 
-addons:
-  apt:
-    sources: &sources
-    - ubuntu-toolchain-r-test
-
-    packages:
-    - ccache
-    - ninja-build
-
-
-cache:
-  directories:
-    - $HOME/.ccache
-    - $TRAVIS_BUILD_DIR/deps
-
-env:
-  # Workaround for https://github.com/travis-ci/travis-ci/issues/4681
-  matrix:
-    - TRAVIS_EMPTY_JOB_WORKAROUND=true
-  
-matrix:
-  exclude:
-    - env: TRAVIS_EMPTY_JOB_WORKAROUND=true
-  include:
-    # LINUX
-    # GCC 5
-    - os: linux
-      env: COMPILER=g++-5 CCOMPILER=gcc-5 COMPUTE_COVERAGE=false
-      compiler: gcc
-
-    # GCC 6
-    - os: linux
-      env: COMPILER=g++-6 CCOMPILER=gcc-6 GCOV=gcov-6 COMPUTE_COVERAGE=true MAKE_DOC=true
-      compiler: gcc
+services:
+  - docker
 
 install:
-  - export PATH=/usr/lib/ccache:$PATH
-  ############################################################################
-  # All the dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
-  ############################################################################
-  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
-  - mkdir -p ${DEPS_DIR} && cd ${DEPS_DIR}
-  
-  ############################################################################
-  # Override compiler if needed
-  ############################################################################
-  - |
-    if [[ "${COMPILER}" == "g++-5" ]]; then 
-      sudo apt-get install gcc-5 g++-5
-    fi
-  - |
-    if [[ "${COMPILER}" == "g++-6" ]]; then 
-      sudo apt-get install gcc-6 g++-6
-    fi
-  - if [[ "${COMPILER}" != "" ]]; then export CXX=${COMPILER}; export CC=${CCOMPILER}; fi
-
-  ############################################################################
-  # Install a recent CMake
-  ############################################################################
-  - |
-    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
-      CMAKE_URL="http://www.cmake.org/files/v3.5/cmake-3.5.2-Linux-x86_64.tar.gz"
-      mkdir -p cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
-      export PATH=${DEPS_DIR}/cmake/bin:${PATH}
-    else
-      if ! brew ls --version cmake &>/dev/null; then brew install cmake; fi
-    fi
- 
-  ############################################################################
-  # Install gtest
-  ############################################################################
-  - |
-    if [ -d "googletest" ]; then
-      cd googletest && git pull
-    else
-      git clone https://github.com/google/googletest.git && cd googletest
-    fi
-  - mkdir -p build && cd build && cmake .. -G Ninja
-  - cmake --build .
-  - sudo cp -r ../googletest/include/gtest /usr/local/include/
-  - sudo cp googlemock/gtest/lib*.a /usr/local/lib
-
-  ############################################################################
-  # Install FunG
-  ############################################################################
-  - cd ${DEPS}
-  - |
-    if [ -d "FunG" ]; then
-      cd FunG && git pull
-    else
-      git clone https://github.com/lubkoll/FunG.git && cd FunG
-    fi
-  - sudo cp -r fung /usr/local/include
-
-  ############################################################################
-  # Install dealII
-  ############################################################################
-  - cd ${DEPS}
-  - |
-    if [ -d "dealii" ]; then
-      cd dealii && git pull
-    else
-      git clone https://github.com/dealii/dealii.git && cd dealii
-    fi
-  - mkdir -p build && cd build && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release -DDEAL_II_COMPONENT_EXAMPLES=OFF
-  - cmake --build .
-  - sudo ninja install
-
-  ############################################################################
-  # Install Spacy
-  ############################################################################
-  - cd ${DEPS}
-  - |
-    if [ -d "Spacy" ]; then
-      cd Spacy && git pull
-    else
-      git clone https://github.com/spacy-dev/Spacy.git && cd Spacy
-    fi
-  - mkdir -p build && cd build && cmake .. -G Ninja -DdealII=ON -DCMAKE_BUILD_TYPE=Release
-  - cmake --build .
-  - sudo ninja install
+  - DEALII_TEST_DIR="/home/dealii/test"
+  - docker pull dealii/deali:latest
 
 script:
-  - cd ${TRAVIS_BUILD_DIR}
-  - mkdir build && cd build
-  - cmake .. -DdealII=ON -DCMAKE_BUILD_TYPE=Release
-  - make -j2 && ctest
+  - docker run --rm -ti -v ${TRAVIS_BUILD_DIR}:${DEALII_TEST_DIR} dealii/dealii deps/run_test_in_docker.sh
 
