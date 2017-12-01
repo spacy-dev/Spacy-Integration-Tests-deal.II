@@ -3,6 +3,7 @@
 DEPS=$HOME/deps
 INCLUDE_DIR=$HOME/include
 LIB_DIR=$HOME/lib
+TEST_DIR=$HOME/test
 
 mkdir $DEPS
 mkdir $INCLUDE_DIR
@@ -32,10 +33,11 @@ cmake .. -DdealII=ON -DBuildTest=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_
 cmake --build .
 make install
 
-cd $HOME/test
+mkdir $TEST_DIR
+cd $TEST_DIR
 mkdir build
 cd build
-cmake .. -DdealII=ON -DCMAKE_BUILD_TYPE=Release
+cmake $TEST_DIR -DdealII=ON -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 
 ctest
