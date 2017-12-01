@@ -4,6 +4,7 @@ DEPS=$HOME/deps
 INCLUDE_DIR=$HOME/include
 LIB_DIR=$HOME/lib
 
+mkdir $DEPS
 mkdir $INCLUDE_DIR
 mkdir $LIB_DIR
 export PATH=$PATH:$INCLUDE_DIR:$LIB_DIR
