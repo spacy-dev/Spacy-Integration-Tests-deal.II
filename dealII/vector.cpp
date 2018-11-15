@@ -4,11 +4,11 @@
 #include <deal.II/grid/grid_generator.h>
 #include <deal.II/lac/vector.h>
 
-#include <Spacy/zeroVectorCreator.hh>
+#include <Spacy/ZeroVectorCreator.h>
 #include <Spacy/Adapter/dealII/copy.hh>
-#include <Spacy/Adapter/dealII/vector.hh>
-#include <Spacy/Adapter/dealII/vectorSpace.hh>
-#include <Spacy/Util/cast.hh>
+#include <Spacy/Adapter/dealII/Vector.h>
+#include <Spacy/Adapter/dealII/VectorSpace.h>
+#include <Spacy/Util/Cast.h>
 
 namespace
 {

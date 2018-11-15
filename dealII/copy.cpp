@@ -5,12 +5,12 @@
 #include <deal.II/lac/vector.h>
 #include <deal.II/lac/block_vector.h>
 
-#include <Spacy/zeroVectorCreator.hh>
+#include <Spacy/ZeroVectorCreator.h>
 #include <Spacy/Adapter/dealII/copy.hh>
-#include <Spacy/Adapter/dealII/vector.hh>
-#include <Spacy/Adapter/dealII/vectorSpace.hh>
-#include <Spacy/Spaces/productSpace.hh>
-#include <Spacy/Util/cast.hh>
+#include <Spacy/Adapter/dealII/Vector.h>
+#include <Spacy/Adapter/dealII/VectorSpace.h>
+#include <Spacy/Spaces/ProductSpace.h>
+#include <Spacy/Util/Cast.h>
 
 using namespace Spacy;
 

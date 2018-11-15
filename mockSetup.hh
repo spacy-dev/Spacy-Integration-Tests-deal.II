@@ -6,15 +6,15 @@
 #include <vector>
 #include <utility>
 
-#include <Spacy/vector.hh>
-#include <Spacy/vectorSpace.hh>
-#include <Spacy/zeroVectorCreator.hh>
+#include <Spacy/Vector.h>
+#include <Spacy/VectorSpace.h>
+#include <Spacy/ZeroVectorCreator.h>
 #include <Spacy/Spaces/realSpace.hh>
 #include <Spacy/Spaces/productSpace.hh>
 #include <Spacy/Util/cast.hh>
 #include <Spacy/Util/Exceptions/incompatibleSpaceException.hh>
 
-#include <Mock/vector.hh>
+#include <Mock/Vector.h>
 #include <Mock/vectorCreator.hh>
 #include <Mock/scalarProduct.hh>
 #include <Mock/norm.hh>
