@@ -11,6 +11,8 @@ mkdir $INCLUDE_DIR
 mkdir $LIB_DIR
 export PATH=$PATH:$INCLUDE_DIR:$LIB_DIR
 
+sudo apt install libboost-dev
+
 cd $DEPS
 git clone https://github.com/google/googletest.git
 cd googletest
