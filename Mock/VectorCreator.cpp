@@ -1,4 +1,4 @@
-#include "vectorCreator.hh"
+#include "VectorCreator.h"
 
 #include <Spacy/Vector.h>
 #include <Spacy/VectorSpace.h>

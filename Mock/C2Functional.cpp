@@ -1,4 +1,4 @@
-#include "c2Functional.hh"
+#include "C2Functional.h"
 
 #include <Spacy/Spaces/ScalarSpace/Real.h>
 #include <Spacy/Vector.h>
