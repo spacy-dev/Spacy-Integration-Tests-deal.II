@@ -5,7 +5,7 @@
 #include <deal.II/lac/vector.h>
 
 #include <Spacy/ZeroVectorCreator.h>
-#include <Spacy/Adapter/dealII/copy.hh>
+#include <Spacy/Adapter/dealII/Copy.h>
 #include <Spacy/Adapter/dealII/Vector.h>
 #include <Spacy/Adapter/dealII/VectorSpace.h>
 #include <Spacy/Util/Cast.h>
