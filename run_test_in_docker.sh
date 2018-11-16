@@ -14,7 +14,6 @@ export PATH=$PATH:$INCLUDE_DIR:$LIB_DIR
 cd $DEPS
 git clone https://github.com/boostorg/any.git any
 BOOST_INCLUDE_DIR=$DEPS/any/include
-export PATH="PATH"
 
 cd $DEPS
 git clone https://github.com/google/googletest.git
