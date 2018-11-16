@@ -11,15 +11,15 @@ mkdir $INCLUDE_DIR
 mkdir $LIB_DIR
 export PATH=$PATH:$INCLUDE_DIR:$LIB_DIR
 
-apt install libboost-dev
-ls /usr/local/include
-BOOST_INCLUDEDIR=/usr/include
+cd $DEPS
+git clone https://github.com/boostorg/any.git any
+BOOST_INCLUDEDIR=$DEPS/any/include
 
 cd $DEPS
 git clone https://github.com/google/googletest.git
 cd googletest
 mkdir build && cd build
-cmake ..
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME
 cmake --build .
 cmake --build . --target install
 
