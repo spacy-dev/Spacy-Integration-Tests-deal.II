@@ -12,8 +12,12 @@ mkdir $LIB_DIR
 export PATH=$PATH:$INCLUDE_DIR:$LIB_DIR
 
 cd $DEPS
-git clone https://github.com/boostorg/any.git any
-cd $INCLUDE_DIR && mkdir boost && cp $DEPS/any/include/boost/any.hpp boost/
+git clone --recursive https://github.com/boostorg/boost.git
+cd boost
+git checkout master
+./bootstrap.sh --prefix=$HOME
+./b2 headers
+./b2 install
 
 cd $DEPS
 git clone https://github.com/google/googletest.git
