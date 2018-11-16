@@ -13,7 +13,8 @@ export PATH=$PATH:$INCLUDE_DIR:$LIB_DIR
 
 cd $DEPS
 git clone https://github.com/boostorg/any.git any
-BOOST_INCLUDEDIR=$DEPS/any/include
+BOOST_INCLUDE_DIR=$DEPS/any/include
+export PATH="PATH"
 
 cd $DEPS
 git clone https://github.com/google/googletest.git
@@ -31,7 +32,7 @@ cd $DEPS
 git clone https://github.com/spacy-dev/Spacy
 cd Spacy
 mkdir build && cd build
-cmake .. -DdealII=ON -DBuildTest=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$HOME/lib
+cmake .. -DdealII=ON -DBuildTest=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$HOME/lib -DCMAKE_CXX_FLAGS='-i $BOOST_INCLUDE_DIR'
 cmake --build .
 cmake --build . --target install
 
