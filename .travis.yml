@@ -6,9 +6,9 @@ services:
   - docker
 
 install:
-  - DEALII_TEST_DIR="/home/dealii/travis"
-  - docker pull dealii/dealii:latest
+  - DEALII_TEST_DIR="/home/travis"
+  - docker pull lubkoll/spacy-dealii-ci:latest
 
 script:
-  - docker run --rm -ti -v ${TRAVIS_BUILD_DIR}:${DEALII_TEST_DIR} dealii/dealii ${DEALII_TEST_DIR}/run_test_in_docker.sh
+  - docker run --rm -ti -v ${TRAVIS_BUILD_DIR}:${DEALII_TEST_DIR} lubkoll/spacy-dealii-ci:latest ${DEALII_TEST_DIR}/run_test_in_docker.sh
 

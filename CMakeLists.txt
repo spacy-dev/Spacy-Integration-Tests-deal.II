@@ -6,8 +6,6 @@ if(CCACHE_PROGRAM)
 endif()
 
 option(Coverage "Coverage" OFF)
-option(Kaskade "Kaskade" OFF)
-option(Dolfin "Dolfin" OFF)
 option(Eigen "Eigen" OFF)
 option(dealII "dealII" OFF)
 
@@ -53,32 +51,7 @@ if(Eigen)
   aux_source_directory(Eigen SRC_LIST)
 endif()
 
-
-if(Dolfin) 
-  find_package(DOLFIN CONFIG REQUIRED)
-  include_directories(${DOLFIN_INCLUDE_DIRS})
-  include_directories(SYSTEM ${DOLFIN_3RD_PARTY_INCLUDE_DIRS})
-  add_definitions(${DOLFIN_CXX_DEFINITIONS})
-  aux_source_directory(FEniCS SRC_LIST)
-  find_package(VTK HINTS ${VTK_DIR} $ENV{VTK_DIR} NO_MODULE QUIET)
-endif()
-
-if(dealII)
-    aux_source_directory(dealII SRC_LIST)
-endif()
-
-if(Kaskade)
-  include_directories(/home/lars/Libraries/Kaskade7.3
-                      /opt/acml5.3.1/gfortran64/include
-                      /home/lars/Libraries/software/gcc-5.4.0/dune-2.4.0/include
-                      /home/lars/Libraries/software/gcc-5.4.0/umfpack-5.4.0/include
-                      /home/lars/Libraries/software/gcc-5.4.0/dune-2.4.0/include/ug)
-  link_directories(/home/lars/Libraries/Kaskade7.3/libs
-                   /opt/acml5.3.1/gfortran64/lib
-                   /home/lars/Libraries/software/gcc-5.4.0/umfpack-5.4.0/lib
-                   /home/lars/Libraries/software/gcc-5.4.0/dune-2.4.0/lib)
-  aux_source_directory(Kaskade SRC_LIST)
-endif()
+aux_source_directory(dealII SRC_LIST)
 
 
 include(CTest)
@@ -90,12 +63,6 @@ foreach(TEST ${SRC_LIST})
   set(TEST_UNIQUE_NAME "${TEST_DIR}_${TEST_NAME}")
   add_executable(${TEST_UNIQUE_NAME} ${TEST})
   target_link_libraries(${TEST_UNIQUE_NAME} mocks ${Spacy_LIBRARIES} ${GTEST_LIBRARIES} pthread)
-  if(Kaskade)
-    target_link_libraries(${TEST_UNIQUE_NAME} kaskade boost_system boost_timer boost_thread dunegrid dunecommon dunegeometry ugS3 ugS2 ugL3 ugS2 devS devX umfpack amd acml)
-  endif()
-  if(Dolfin)
-    target_link_libraries(${TEST_UNIQUE_NAME} ${DOLFIN_LIBRARIES})
-  endif()
   if(dealII)
     DEAL_II_SETUP_TARGET(${TEST_UNIQUE_NAME})
   endif()
