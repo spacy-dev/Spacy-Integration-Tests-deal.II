@@ -1,10 +1,10 @@
 #!/bin/bash
 
-DEPS=$HOME/deps
-INCLUDE_DIR=$HOME/include
-INSTALL_DIR=$HOME/install
-TEST_DIR=$HOME/test
-TRAVIS_DIR=$HOME/travis
+DEPS=/home/deps
+INCLUDE_DIR=/home/include
+INSTALL_DIR=/home/install
+TEST_DIR=/home/test
+TRAVIS_DIR=/home/travis
 
 mkdir $DEPS
 mkdir $INCLUDE_DIR
