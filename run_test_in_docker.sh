@@ -21,7 +21,7 @@ cmake --build . --target install
 
 cd $DEPS
 git clone https://github.com/lubkoll/FunG
-cd FunG && mkdir build && build
+cd FunG && mkdir build && cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR && cmake --build . --target install
 cd $DEPS
 git clone https://github.com/spacy-dev/Spacy
