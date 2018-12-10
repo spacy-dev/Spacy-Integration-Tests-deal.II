@@ -11,6 +11,8 @@ mkdir $INCLUDE_DIR
 mkdir $INSTALL_DIR
 export PATH=$PATH:$INCLUDE_DIR:$INSTALL_DIR
 
+sudo apt install git
+
 cd $DEPS
 git clone https://github.com/google/googletest.git
 cd googletest
