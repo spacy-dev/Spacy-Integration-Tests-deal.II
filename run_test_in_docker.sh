@@ -43,5 +43,4 @@ mkdir build && cd build
 cmake $TRAVIS_DIR -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 
-./dealII_TutorialsTest
-#ctest
+ctest
