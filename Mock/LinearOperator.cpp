@@ -11,7 +11,7 @@ namespace Mock
       Spacy::VectorBase(Spacy::Space::R)
   {}
 
-  ::Spacy::Vector LinearOperator::operator()(const ::Spacy::Vector& dx) const
+  ::Spacy::Vector LinearOperator::operator()(const ::Spacy::Vector&) const
   {
     return Spacy::Real(get());
   }
