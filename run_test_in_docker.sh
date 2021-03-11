@@ -38,8 +38,8 @@ cd $DEPS
 git clone https://github.com/spacy-dev/Spacy
 cd Spacy
 mkdir build && cd build
-conan install /home/spacy --build=missing
-cmake /home/spacy -DdealII=ON -DBuildTest=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_TOOLCHAIN_FILE=conan_paths.cmake
+conan install .. --build=missing
+cmake .. -DdealII=ON -DBuildTest=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_TOOLCHAIN_FILE=conan_paths.cmake
 cmake --build . --target install
 
 cd $DEPS/Spacy/Examples/deal.II_Tutorial/Tutorial/Step4 
