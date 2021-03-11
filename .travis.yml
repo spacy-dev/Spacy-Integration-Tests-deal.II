@@ -7,8 +7,9 @@ services:
 
 install:
   - DEALII_TEST_DIR="/home/travis"
-  - docker pull lubkoll/boost-dealii:latest
+  - IMAGE="dealii/dealii:v9.2.0-focal"
+  - docker pull ${IMAGE}
 
 script:
-  - docker run --rm -ti -v ${TRAVIS_BUILD_DIR}:${DEALII_TEST_DIR} lubkoll/boost-dealii:latest ${DEALII_TEST_DIR}/run_test_in_docker.sh
+  - docker run --rm -ti -v ${TRAVIS_BUILD_DIR}:${DEALII_TEST_DIR} ${IMAGE} ${DEALII_TEST_DIR}/run_test_in_docker.sh
 
